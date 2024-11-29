@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Usuarios</title>
+</head>
+<body>
+    <h2>Lista de Usuarios</h2>
+    <ul id="usuario-list"></ul>
+    
+    <label for="x">Posición X:</label>
+    <input type="number" id="x" min="1" placeholder="Ingrese X">
+    <br>
+    <label for="y">Posición Y:</label>
+    <input type="number" id="y" min="1" placeholder="Ingrese Y">
+    <br><br>
+    <button onclick="mostrarUsuarios()">Mostrar Usuarios</button>
+
+    <script>
+
+        const usuarios = [
+            "Sofía", "Mateo", "Valentina", "Diego", "Camila", 
+            "Sebastián", "Lucía", "Tomás", "Isabela", "Joaquín", 
+            "Mariana", "Alejandro", "Martina", "Gabriel", "Ana"
+        ];
+
+        function mostrarUsuarios() {
+            const x = parseInt(document.getElementById('x').value);
+            const y = parseInt(document.getElementById('y').value);
+
+            if (isNaN(x) || isNaN(y) || x < 1 || y < 1 || x > usuarios.length || y > usuarios.length || x > y) {
+                alert("Por favor, ingrese posiciones válidas (x <= y y dentro del rango de la lista).");
+                return;
+            }
+
+            const listaElemento = document.getElementById('usuario-list');
+            listaElemento.innerHTML = ''; 
+
+            for (let i = x - 1; i < y; i++) {
+                const li = document.createElement('li');
+                li.textContent = usuarios[i];
+                listaElemento.appendChild(li);
+            }
+        }
+    </script>
+</body>
+</html>
